@@ -1,14 +1,12 @@
 import requests 
 import json 
-# https://api.dev.hh.ru/vacancies&text='python разработчик'
-# https://api.hh.ru/vacancies/69819518
 
 url = 'https://api.hh.ru/vacancies/'
 final_list = []
 
 for page_num in range(20):
-    par = {'text': 'python разработчик','per_page':'100', 'page':page_num}
-    request_list = requests.get(url, params=par)
+    params = {'text': 'python разработчик','per_page':'100', 'page':page_num}
+    request_list = requests.get(url, params=params)
     result_request_list = request_list.json()['items']
     
 
@@ -38,12 +36,9 @@ for page_num in range(20):
         final_list.append(new_i)
         print(new_i)
 
-    # k = json.dumps(request_to.json(),ensure_ascii=False, indent=4)
-    # print(k)
-
 itog = {"data" : final_list }
 
-k = json.dumps(itog,ensure_ascii=False, indent=4)
+pretty_json = json.dumps(itog,ensure_ascii=False, indent=4)
 
-print(k)
+print(pretty_json)
 
